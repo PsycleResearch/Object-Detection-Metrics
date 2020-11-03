@@ -9,7 +9,7 @@ __pycache__/
 
 # C extensions
 *.so
-
+*.zip
 # Distribution / packaging
 .Python
 build/
@@ -26,6 +26,8 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+*.jpg
+*.png
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
