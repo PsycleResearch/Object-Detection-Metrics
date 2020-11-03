@@ -1,16 +1,8 @@
-import os,sys
-currentPath = os.path.dirname(os.path.abspath(__file__))
-#################
-# def add_path(path):
-#     if path not in sys.path:
-#         sys.path.insert(0, path)
-#
-# # Add lib to PYTHONPATH
-# libPath = os.path.join(currentPath, 'lib')
-# add_path(libPath)
-#################
+import os
 
-from utils import *
+currentPath = os.path.dirname(os.path.abspath(__file__))
+
+from Object_Detection_Metrics.utils import *
 
 
 class BoundingBox:
@@ -145,13 +137,13 @@ class BoundingBox:
         det2ImgSize = det2.getImageSize()
 
         if det1.getClassId() == det2.getClassId() and \
-           det1.classConfidence == det2.classConfidenc() and \
-           det1BB[0] == det2BB[0] and \
-           det1BB[1] == det2BB[1] and \
-           det1BB[2] == det2BB[2] and \
-           det1BB[3] == det2BB[3] and \
-           det1ImgSize[0] == det1ImgSize[0] and \
-           det2ImgSize[1] == det2ImgSize[1]:
+                det1.classConfidence == det2.classConfidenc() and \
+                det1BB[0] == det2BB[0] and \
+                det1BB[1] == det2BB[1] and \
+                det1BB[2] == det2BB[2] and \
+                det1BB[3] == det2BB[3] and \
+                det1ImgSize[0] == det1ImgSize[0] and \
+                det2ImgSize[1] == det2ImgSize[1]:
             return True
         return False
 

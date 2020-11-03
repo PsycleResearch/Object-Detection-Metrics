@@ -1,5 +1,4 @@
 import glob
-import glob
 import os
 import shutil
 import sys
@@ -8,8 +7,8 @@ import cv2
 import numpy as np
 from PIL import Image
 
-from pascalvoc import ValidateFormats, ValidateMandatoryArgs, \
-    ValidateCoordinatesTypes, ValidatePaths, getBoundingBoxes, MethodAveragePrecision, CoordinatesType, \
+from Object_Detection_Metrics.pascalvoc import ValidateFormats, ValidateCoordinatesTypes, getBoundingBoxes, \
+    MethodAveragePrecision, CoordinatesType, \
     ValidateImageSize, Evaluator
 
 

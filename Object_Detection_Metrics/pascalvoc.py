@@ -1,22 +1,10 @@
 import glob
-import sys
 import os
 
 currentPath = os.path.dirname(os.path.abspath(__file__))
 
-#################
-# def add_path(path):
-#     if path not in sys.path:
-#         sys.path.insert(0, path)
-#
-#
-# # Add lib to PYTHONPATH
-# libPath = os.path.join(currentPath, 'lib')
-# add_path(libPath)
-#################
-
-from Evaluator import *
-from utils import BBFormat
+from Object_Detection_Metrics.Evaluator import *
+from Object_Detection_Metrics.utils import BBFormat
 
 
 # from argparse import RawTextHelpFormatter

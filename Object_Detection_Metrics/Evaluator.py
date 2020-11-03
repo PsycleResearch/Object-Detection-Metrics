@@ -8,27 +8,17 @@
 #        Last modification: Oct 9th 2018                                                 #
 ###########################################################################################
 
-import os
+import json
 import sys
 from collections import Counter
 
-# #######
-# currentPath = os.path.dirname(os.path.abspath(__file__))
-# def add_path(path):
-#     if path not in sys.path:
-#         sys.path.insert(0, path)
-#
-# # Add lib to PYTHONPATH
-# libPath = os.path.join(currentPath, 'lib')
-# add_path(libPath)
-# #######
-
 import matplotlib.pyplot as plt
 import numpy as np
-import json
-from BoundingBox import *
-from BoundingBoxes import *
-from utils import *
+
+from Object_Detection_Metrics.BoundingBoxes import *
+from Object_Detection_Metrics.utils import *
+
+currentPath = os.path.dirname(os.path.abspath(__file__))
 
 
 class Evaluator:
