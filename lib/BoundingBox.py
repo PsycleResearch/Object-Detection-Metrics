@@ -1,3 +1,15 @@
+import os,sys
+currentPath = os.path.dirname(os.path.abspath(__file__))
+#################
+# def add_path(path):
+#     if path not in sys.path:
+#         sys.path.insert(0, path)
+#
+# # Add lib to PYTHONPATH
+# libPath = os.path.join(currentPath, 'lib')
+# add_path(libPath)
+#################
+
 from utils import *
 
 

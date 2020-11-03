@@ -12,9 +12,20 @@ import os
 import sys
 from collections import Counter
 
+# #######
+# currentPath = os.path.dirname(os.path.abspath(__file__))
+# def add_path(path):
+#     if path not in sys.path:
+#         sys.path.insert(0, path)
+#
+# # Add lib to PYTHONPATH
+# libPath = os.path.join(currentPath, 'lib')
+# add_path(libPath)
+# #######
+
 import matplotlib.pyplot as plt
 import numpy as np
-
+import json
 from BoundingBox import *
 from BoundingBoxes import *
 from utils import *
@@ -146,6 +157,7 @@ class Evaluator:
         return ret
 
     def PlotPrecisionRecallCurve(self,
+                                 dict_name,
                                  boundingBoxes,
                                  IOUThreshold=0.5,
                                  method=MethodAveragePrecision.EveryPointInterpolation,
@@ -186,11 +198,11 @@ class Evaluator:
         """
         results = self.GetPascalVOCMetrics(boundingBoxes, IOUThreshold, method)
         result = None
-        # Each resut represents a class
+        # Each result represents a class
         for result in results:
+            pred_info = {}
             if result is None:
                 raise IOError('Error: Class %d could not be found.' % classId)
-
             classId = result['class']
             precision = result['precision']
             recall = result['recall']
@@ -200,6 +212,15 @@ class Evaluator:
             npos = result['total positives']
             total_tp = result['total TP']
             total_fp = result['total FP']
+            pred_info['Class'] = dict_name[int(classId)]
+            pred_info['Total_detections_in_truth'] = int(npos)
+            pred_info['Total_detections_in_pred'] = int(total_fp + total_tp)
+            pred_info['Total_true_positives'] = int(total_tp)
+            pred_info['Total_false_positives'] = int(total_fp)
+            pred_info['Total_false_negatives'] = int(npos - total_tp)
+            print(f'Save folder {savePath}')
+            with open(f'{savePath}/results_{dict_name[int(classId)]}.json', 'w') as f:
+                json.dump(pred_info, f)
 
             plt.close()
             if showInterpolatedPrecision:
@@ -281,7 +302,7 @@ class Evaluator:
             #                 arrowprops=dict(arrowstyle="->", connectionstyle="arc3"),
             #                 bbox=box)
             if savePath is not None:
-                plt.savefig(os.path.join(savePath, classId + '.png'))
+                plt.savefig(os.path.join(savePath, dict_name[int(classId)] + '.png'))
             if showGraphic is True:
                 plt.show()
                 # plt.waitforbuttonpress()
