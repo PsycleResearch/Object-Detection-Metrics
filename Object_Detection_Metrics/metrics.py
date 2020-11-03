@@ -21,7 +21,6 @@ def calculate_metrics(dict_name, gtFolder, detFolder, iouThreshold, gtFormat='xy
     args['gtFolder'] = gtFolder
     args['detFolder'] = detFolder
     args['iouThreshold'] = iouThreshold
-    args['showPlot'] = showPlot
     args['gtCoordinates'] = gtCoordinates
     args['detCoordinates'] = detCoordinates
     args['imgSize'] = imgSize
@@ -61,8 +60,9 @@ def calculate_metrics(dict_name, gtFolder, detFolder, iouThreshold, gtFormat='xy
         # Clear folder and save results
         shutil.rmtree(savePath, ignore_errors=True)
         os.makedirs(savePath)
+    elif not os.path.isdir(savePath):
+        os.makedirs(savePath)
     # Show plot during execution
-    showPlot = args['showPlot']
     # Get groundtruth boxes
     allBoundingBoxes, allClasses = getBoundingBoxes(
         gtFolder, True, gtFormat, gtCoordType, imgSize=imgSize)
