@@ -233,6 +233,8 @@ def draw_bounding_boxes_truth_pred(dict_name, gt_annotations, img_folder, result
     img_folder : folder which contains test images
     results : folder where results are to be saved
     """
+    if not os.path.isdir(results):
+        os.makedirs(results)
     draw_boxes(dict_name, gt_annotations, img_folder, results, isGT=True)
     draw_boxes(dict_name, prediction_annotations, img_folder, results, isGT=False)
     add_legend(results)
